@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+
 
 class ProductController extends Controller
 {
@@ -73,6 +75,16 @@ class ProductController extends Controller
         // Temukan produk yang akan diupdate
         $product = Product::find($id);
 
+        // Hapus gambar lama jika perlu
+        if ($product->image) {
+            $oldImagePath = public_path('imageProduct') . '/' . $product->image;
+
+            // Check if the file exists before attempting to delete
+            if (File::exists($oldImagePath)) {
+                File::delete($oldImagePath);
+            }
+        }
+
         // Update produk
         $product->name = $request->input('name');
         $product->description = $request->input('description');
@@ -80,9 +92,6 @@ class ProductController extends Controller
         $product->price = $request->input('price');
 
         if ($request->hasFile('image')) {
-            // Hapus gambar lama jika perlu
-            // Storage::delete($product->image);
-
             // Unggah gambar yang baru
             $image = $request->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
@@ -95,6 +104,7 @@ class ProductController extends Controller
         // Redirect ke halaman daftar produk
         return redirect()->route('products.index');
     }
+
 
 
 
