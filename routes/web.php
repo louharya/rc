@@ -32,4 +32,6 @@ Route::get('/orders', [OrdersController::class, 'index'])->name('orders.index');
 Route::get('/orders/create/{productId}', [OrdersController::class, 'create'])->name('orders.create');
 Route::post('/orders', [OrdersController::class, 'store'])->name('orders.store');
 Route::get('/create-invoice/{id}', [OrdersController::class, 'moveDataFromOrderToInvoice'])->name('create-invoice');
-Route::get('/admin/laporan', [OrdersController::class, 'laporan']);
+Route::get('/admin/laporan', [OrdersController::class, 'laporan'])->name('laporan');
+Route::get('/print-receipt/{id}', [OrdersController::class, 'printReceipt'])
+    ->name('print-receipt');

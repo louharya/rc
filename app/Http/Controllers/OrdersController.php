@@ -35,7 +35,7 @@ class OrdersController extends Controller
             'customer_phone' => 'required',
             'quantity' => 'required|integer|min:1',
         ]);
-        
+
         $product = Product::find($request->product_id);
         $totalPrice = $product->price * $request->quantity;
 
@@ -67,7 +67,13 @@ class OrdersController extends Controller
             if ($product) {
                 // Membuat entri baru dalam tabel "invoices"
                 $invoice = new Invoice();
-                $invoice->invoice_number = 'INV-' . uniqid(); // Nomor faktur yang unik
+                $customPrefix = 'INV';
+
+                // Get the current date and time components
+                $currentDateTime = date('YmdHis');
+
+                // Combine the prefix, date, and time to create the invoice number
+                $invoice->invoice_number = $customPrefix . '-' . $currentDateTime;
                 $invoice->name = $order->customer_name;
                 $invoice->adress = $order->customer_address;
                 $invoice->quantity = $order->quantity;
@@ -83,7 +89,7 @@ class OrdersController extends Controller
                     // Jika faktur berhasil disimpan dan stok produk dikurangi, Anda dapat menghapus pesanan (opsional)
                     $order->delete();
 
-                    return redirect()->route('admin.home')->with('success', 'Data dari pesanan dengan ID ' . $orderId . ' telah dipindahkan ke tabel "invoices" dan stok produk telah diperbarui.');
+                    return redirect()->route('laporan')->with('success', 'Data dari pesanan dengan ID ' . $orderId . ' telah dipindahkan ke tabel "invoices" dan stok produk telah diperbarui.');
                 } else {
                     return redirect()->route('admin.home')->with('error', 'Gagal membuat faktur untuk pesanan dengan ID ' . $orderId . '.');
                 }
@@ -106,5 +112,19 @@ class OrdersController extends Controller
             'totalRevenue' => $totalRevenue,
             'invoices' => $invoices,
         ]);
+    }
+
+    public function printReceipt($id)
+    {
+        // Fetch the invoice data based on the provided ID
+        $invoice = Invoice::find($id);
+
+        if (!$invoice) {
+            // Handle the case where the invoice with the provided ID is not found
+            abort(404);
+        }
+
+        // Return the receipt view with the invoice data
+        return view('struk', compact('invoice'));
     }
 }

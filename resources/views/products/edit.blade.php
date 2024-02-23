@@ -14,7 +14,7 @@
 
     <div class="mb-3">
         <label for="image" class="form-label">Gambar Produk</label>
-        <input type="file" class="form-control" id="image" name="image">
+        <input type="file" class="form-control" id="image" name="image" value="{{ $product->image }}">
     </div>
 
     <div class="mb-3">
@@ -23,7 +23,7 @@
     </div>
 
     <div class="mb-3">
-        <label for="stock" class="form-label">Stok Produk</label>
+        <label for="stock" class="form-label">Persedian</label>
         <input type="number" class="form-control" id="stock" name="stock" value="{{ $product->stock }}">
     </div>
 

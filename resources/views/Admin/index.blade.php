@@ -2,27 +2,31 @@
 
 @section('content')
     <div class="row mt-3">
-        @foreach ($orders as $order)
-            <div class="col-md-4 mb-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $order->customer_name }}</h5>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                                <span class="text-warning">Quantity:</span> {{ $order->quantity }}
-                            </li>
-                            <li class="list-group-item">
-                                <span>Total Harga:</span> {{ $order->total_price }}
-                            </li>
-                        </ul>
-                        <div class="text-center mt-3">
-                            <form action="{{ route('create-invoice', ['id' => $order->id]) }}" method="get">
-                                <button type="submit" class="btn btn-primary">Create Invoice</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @endforeach
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Customer Name</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Total Harga</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($orders as $order)
+                        <tr>
+                            <td>{{ $order->customer_name }}</td>
+                            <td>{{ $order->quantity }}</td>
+                            <td>{{ $order->total_price }}</td>
+                            <td>
+                                <form action="{{ route('create-invoice', ['id' => $order->id]) }}" method="get">
+                                    <button type="submit" class="btn btn-primary">Create Invoice</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
 @endsection

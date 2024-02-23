@@ -2,17 +2,17 @@
 
 @section('content')
 
-<h1>Daftar Produk</h1>
+<h1>Daftar Mobil</h1>
 <a href="{{ route('products.create') }}" class="btn btn-primary">Tambah Produk</a>
 
-<table class="table">
+<table class="table mt-4">
     <thead>
         <tr>
             <th>No.</th>
             <th>Nama Produk</th>
             <th>Gambar</th>
             <th>Deskripsi</th>
-            <th>Stok</th>
+            <th>Persedian</th>
             <th>Harga</th>
             <th>Action</th>
         </tr>

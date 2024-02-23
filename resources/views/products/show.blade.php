@@ -11,7 +11,7 @@
     <div class="col-sm-8">
         <h3 class="my-3">{{ $product->name }}</h3>
         <p>{{ $product->description }}</p>
-        <p>Stok: {{ $product->stock }}</p>
+        <p>Persedian: {{ $product->stock }}</p>
         <p>Harga: Rp. {{ $product->price }}</p>
     </div>
 </div>

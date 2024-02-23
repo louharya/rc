@@ -3,8 +3,8 @@
 @section('content')
     <div class="row mt-4">
         <div class="col-sm-9">
-            <h3>Daftar Produk</h3>
-            <span class="badge bg-primary">PRODUK</span>
+            <h3>Daftar Mobil    </h3>
+            <span class="badge bg-primary">Mobil    </span>
             <span class="text-secondary">
 
             </span>
@@ -23,6 +23,7 @@
 
     <div class="row mt-3">
         @foreach ($products as $product)
+        @if ($product->stock > 0)
         <div class="col-sm-4">
             <div class="card mb-4">
                 <img src="{{ asset('imageProduct/' . $product->image) }}" class="card-img-top" alt="{{ $product->name }}">
@@ -30,13 +31,13 @@
                     <h5 class="card-title">{{ $product->name }}</h5>
                     <p class="card-text">{{ substr($product->description, 0, 100) }}{{ strlen($product->description) > 100 ? '...' : '' }}</p>
                     <div class="d-flex justify-content-between align-items-center">
-                        <span class="text-warning">Rp. {{ $product->price }}</span>
-                        <span>Stok: {{ $product->stock }}</span>
+                        <span class="text-warning">Rp. {{ number_format($product->price, 2, ',', '.') }}</span>
+                        <span>Persedian {{ $product->stock }}</span>
                     </div>
                     <div class="text-center mt-3">
                         <a href="{{ route('orders.create', ['productId' => $product->id]) }}" class="btn btn-warning">Pesan</a>
                         <button type="button" class="btn btn-success ml-2" data-bs-toggle="modal" data-bs-target="#productModal{{ $product->id }}">
-                            Detail Produk
+                            Detail Mobil
                         </button>
                     </div>
                 </div>
@@ -60,10 +61,11 @@
                 </div>
             </div>
         </div>
+        @endif
         @endforeach
     </div>
 
-    
+
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 @endsection
