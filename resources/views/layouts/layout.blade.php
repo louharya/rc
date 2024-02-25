@@ -87,6 +87,28 @@
         .navbar-toggler-icon {
             color: white;
         }
+
+        /* File styles.css atau di dalam tag <style> pada layout Anda */
+        .table-container {
+            margin-top: 20px;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .table th,
+        .table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .table th {
+            background-color: #f2f2f2;
+        }
     </style>
 </head>
 
@@ -94,7 +116,8 @@
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="{{ asset('images/RC.png') }}" alt="Logo" width="50" height="50" class="d-inline-block align-text-center">
+                <img src="{{ asset('images/RC.png') }}" alt="Logo" width="50" height="50"
+                    class="d-inline-block align-text-center">
                 RC Wheels
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -108,6 +131,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/home"><i class="fa fa-home" aria-hidden="true"></i>
                             Beranda</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/invoices"><i class="fa fa-history" aria-hidden="true"></i>
+                            History</a>
                     </li>
 
                     {{-- <li class="nav-item">

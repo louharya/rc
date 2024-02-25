@@ -35,3 +35,5 @@ Route::get('/create-invoice/{id}', [OrdersController::class, 'moveDataFromOrderT
 Route::get('/admin/laporan', [OrdersController::class, 'laporan'])->name('laporan');
 Route::get('/print-receipt/{id}', [OrdersController::class, 'printReceipt'])
     ->name('print-receipt');
+
+Route::get('/invoices', [OrdersController::class, 'userInvoice'])->name('invoices.index');

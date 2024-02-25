@@ -7,7 +7,7 @@
                 <thead>
                     <tr>
                         <th scope="col">Customer Name</th>
-                        <th scope="col">Quantity</th>
+                        <th scope="col">Jumlah Hari Sewa</th>
                         <th scope="col">Total Harga</th>
                         <th scope="col">Actions</th>
                     </tr>

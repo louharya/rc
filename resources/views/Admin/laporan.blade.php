@@ -2,22 +2,9 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
-            <!-- Total Stok Terjual -->
-            <div class="col-md-6">
-                <div class="box-laporan">
-                    <h5 class="card-title">Total Stok Terjual</h5>
-                    <h2 class="card-text text-warning">{{ $totalSoldItems }}</h2>
-                </div>
-            </div>
-
-            <!-- Total Pendapatan -->
-            <div class="col-md-6">
-                <div class="box-laporan">
-                    <h5 class="card-title">Total Pendapatan</h5>
-                    <h2 class="card-text text-warning">Rp.{{ $totalRevenue }}</h2>
-                </div>
-            </div>
+        <div class="box-laporan">
+            <h5 class="card-title">Total Pendapatan</h5>
+            <h2 class="card-text text-warning">Rp.{{ $totalRevenue }}</h2>
         </div>
 
         <!-- Invoice Table -->
@@ -55,5 +42,5 @@
         </table>
     </div>
 
-    
+
 @endsection

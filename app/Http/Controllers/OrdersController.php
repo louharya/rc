@@ -127,4 +127,23 @@ class OrdersController extends Controller
         // Return the receipt view with the invoice data
         return view('struk', compact('invoice'));
     }
+
+    public function userInvoice()
+{
+    // Mendapatkan informasi pengguna yang saat ini login
+    $currentUser = Auth::user();
+
+    // Jika pengguna tidak ada, mungkin ingin menangani kasus ini sesuai kebutuhan
+    if (!$currentUser) {
+        abort(403, 'Unauthorized access'); // Contoh: Redirect atau tindakan lain sesuai kebijakan keamanan
+    }
+
+    // Menampilkan data invoice hanya untuk pengguna yang saat ini login
+    $data = Invoice::where('invoices.name', '=', $currentUser->name)
+                    ->join('users', 'invoices.name', '=', 'users.name')
+                    ->select('invoices.*', 'users.*')
+                    ->get();
+
+    return view('User.invoice', ['data' => $data]);
+}
 }
